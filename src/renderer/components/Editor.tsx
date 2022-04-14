@@ -29,7 +29,7 @@ export const Editor = (props: Props) => {
                 editor.current.languages.json.jsonDefaults.setDiagnosticsOptions({
                     validate: true,
                     schemas: [{
-                        uri: 'http://alfabank.ru/schema.json',
+                        uri: 'http://thrift-api-ui.ru/schema.json',
                         fileMatch: ['*'],
                         schema: props.jsonSchema
                     }]

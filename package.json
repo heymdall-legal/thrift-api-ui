@@ -56,7 +56,7 @@
   },
   "build": {
     "productName": "Thrift API UI",
-    "appId": "ru.alfabank.thrift-ui",
+    "appId": "ru.Heymdall.thrift-ui",
     "mac": {
       "category": "utils"
     },
@@ -150,5 +150,5 @@
     "thriftrw": "^3.11.3",
     "uuid": "^3.3.2"
   },
-  "homepage": "https://github.com/alfa-laboratory/"
+  "homepage": "https://github.com/Heymdall/thrift-api-ui"
 }

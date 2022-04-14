@@ -5,7 +5,7 @@
 
 ## Get Thrift API UI
 
-Download the [latest release](https://github.com/alfa-laboratory/thrift-api-ui/releases/latest) (MacOS, Windows, Linux)
+Download the [latest release](https://github.com/Heymdall/thrift-api-ui/releases/latest) (MacOS, Windows, Linux)
 
 ## Screenshots
 
@@ -15,7 +15,7 @@ Download the [latest release](https://github.com/alfa-laboratory/thrift-api-ui/r
 ## Development
 
 ```
-git clone git@github.com:alfa-laboratory/thrift-api-ui.git
+git clone git@github.com:Heymdall/thrift-api-ui.git
 cd thrift-api-ui
 yarn
 yarn start-dev
