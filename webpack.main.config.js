@@ -22,7 +22,11 @@ module.exports = merge.smart(baseConfig, {
                     presets: [
                         [
                             '@babel/preset-env',
-                            { targets: 'maintained node versions' }
+                            {
+                                targets: 'maintained node versions',
+                                "useBuiltIns": "usage", // alternative mode: "entry"
+                                "corejs": 2, // default would be 2
+                            }
                         ],
                         '@babel/preset-typescript'
                     ],

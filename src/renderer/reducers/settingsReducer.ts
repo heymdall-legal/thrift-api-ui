@@ -2,6 +2,7 @@ import {
     AllActions,
     HIDE_SETTINGS,
     SAVE_ENDPOINT_HISTORY,
+    SET_IGNORE_SSL_ERRORS,
     SET_MULTIPLEXER_ENABLED,
     SET_PROXY_ENABLED,
     SET_PROXY_URL,
@@ -19,6 +20,7 @@ export type SettingsState = {
     isOpened: boolean;
     isProxyEnabled: boolean;
     requestTimeout: number;
+    ignoreSSLErrors: boolean;
     version?: string;
 };
 
@@ -26,6 +28,7 @@ export const defaultState: SettingsState = {
     isMultiplexerEnabled: false,
     isOpened: false,
     isProxyEnabled: false,
+    ignoreSSLErrors: false,
     requestTimeout: 3000,
     endpointsHistory: []
 };
@@ -41,6 +44,11 @@ export function settingsReducer(state: SettingsState = defaultState, action: All
             return {
                 ...state,
                 thriftPath: action.path
+            };
+        case SET_IGNORE_SSL_ERRORS:
+            return {
+                ...state,
+                ignoreSSLErrors: action.value,
             };
         case SET_PROXY_URL:
             return {
