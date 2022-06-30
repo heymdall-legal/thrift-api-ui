@@ -38,7 +38,7 @@ export async function performRequest(
         headers: {
             'Content-Type': 'application/x-thrift',
         },
-        strictSSL: !ignoreSSLErrors,
+        rejectUnauthorized: !ignoreSSLErrors,
         timeout,
         proxy
     });

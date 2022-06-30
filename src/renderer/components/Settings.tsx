@@ -57,6 +57,13 @@ export const Settings = (props: Props) => {
                 </SettingsRow>
                 <SettingsRow>
                     <CheckBox
+                        text='Ignore SSL errors'
+                        checked={ props.ignoreSSLErrors }
+                        onChange={ props.onIgnoreSSLErrorChange }
+                    />
+                </SettingsRow>
+                <SettingsRow>
+                    <CheckBox
                         text='Enable proxy'
                         checked={ props.isProxyEnabled }
                         onChange={ props.onIsProxyEnabledChange }
@@ -69,13 +76,6 @@ export const Settings = (props: Props) => {
                         disabled={ !props.isProxyEnabled }
                         onChange={ props.onProxyUrlChange }
                         width='available'
-                    />
-                </SettingsRow>
-                <SettingsRow>
-                    <CheckBox
-                        text='Ignore SSL errors'
-                        checked={ props.ignoreSSLErrors }
-                        onChange={ props.onIgnoreSSLErrorChange }
                     />
                 </SettingsRow>
                 <SettingsRow>

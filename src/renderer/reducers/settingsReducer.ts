@@ -2,6 +2,7 @@ import {
     AllActions,
     HIDE_SETTINGS,
     SAVE_ENDPOINT_HISTORY,
+    SET_IGNORE_SSL_ERRORS,
     SET_MULTIPLEXER_ENABLED,
     SET_PROXY_ENABLED,
     SET_PROXY_URL,
@@ -43,6 +44,11 @@ export function settingsReducer(state: SettingsState = defaultState, action: All
             return {
                 ...state,
                 thriftPath: action.path
+            };
+        case SET_IGNORE_SSL_ERRORS:
+            return {
+                ...state,
+                ignoreSSLErrors: action.value,
             };
         case SET_PROXY_URL:
             return {
