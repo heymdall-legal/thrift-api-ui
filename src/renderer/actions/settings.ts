@@ -11,6 +11,7 @@ export const SET_THRIFT_SOURCE_PATH_SUCCESS = '@settings/setThriftSourcePathSucc
 export const SET_THRIFT_SOURCE_PATH_ERROR = '@settings/setThriftSourcePathError';
 export const SET_PROXY_URL = '@settings/setProxyUrl';
 export const SET_PROXY_ENABLED = '@settings/setProxyEnabled';
+export const SET_IGNORE_SSL_ERRORS = '@settings/setIgnoreSSLErrors';
 export const SET_REQUEST_TIMEOUT = '@settings/setRequestTimeout';
 export const SET_VERSION = '@settings/setVersion';
 export const SAVE_ENDPOINT_HISTORY = '@settings/saveEndpointHistory';
@@ -62,6 +63,12 @@ const settingsAC = {
         return {
             type: SET_PROXY_ENABLED,
             value
+        } as const;
+    },
+    setIgnoreSSLErrors(value: boolean) {
+        return {
+            type: SET_IGNORE_SSL_ERRORS,
+            value,
         } as const;
     },
     setRequestTimeout(value: number) {
@@ -116,6 +123,7 @@ export function setThriftSource(path: string): SettingsThunkAction {
 export const setMultiplexerEnabled = settingsAC.setMultiplexerEnabled;
 export const setProxyUrl = settingsAC.setProxyUrl;
 export const setProxyEnabled = settingsAC.setProxyEnabled;
+export const setIgnoreSSLErrors = settingsAC.setIgnoreSSLErrors;
 export const setRequestTimeout = settingsAC.setRequestTimeout;
 export const saveEndpointHistory = settingsAC.saveEndpointHistory;
 export const showSettings = settingsAC.showSettings;

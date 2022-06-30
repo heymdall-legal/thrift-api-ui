@@ -9,6 +9,7 @@ import { Modal } from './Modal';
 type Props = {
     isMultiplexerEnabled: boolean;
     isProxyEnabled: boolean;
+    ignoreSSLErrors: boolean;
     proxyUrl?: string;
     thriftSrcPath?: string;
     requestTimeout: number;
@@ -17,6 +18,7 @@ type Props = {
     onClose: () => void;
     onIsMultiplexerEnabledChange: (value: boolean) => void;
     onIsProxyEnabledChange: (value: boolean) => void;
+    onIgnoreSSLErrorChange: (value: boolean) => void;
     onProxyUrlChange: (value: string) => void;
     onRequestTimeoutChange: (value: number) => void;
     onChangePathClick: () => void;
@@ -67,6 +69,13 @@ export const Settings = (props: Props) => {
                         disabled={ !props.isProxyEnabled }
                         onChange={ props.onProxyUrlChange }
                         width='available'
+                    />
+                </SettingsRow>
+                <SettingsRow>
+                    <CheckBox
+                        text='Ignore SSL errors'
+                        checked={ props.ignoreSSLErrors }
+                        onChange={ props.onIgnoreSSLErrorChange }
                     />
                 </SettingsRow>
                 <SettingsRow>

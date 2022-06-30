@@ -13,7 +13,12 @@ import {
     methodDefaultRequestSelector,
     servicesStateSelector
 } from '../selectors/services';
-import { multiplexerEnabledSelector, requestProxySelector, requestTimeoutSelector } from '../selectors/settings';
+import {
+    ignoreSSLErrorsSelector,
+    multiplexerEnabledSelector,
+    requestProxySelector,
+    requestTimeoutSelector
+} from '../selectors/settings';
 import { saveEndpointHistory } from './settings';
 import { savedEntriesSelector } from '../selectors/savedRequests';
 import { SavedRequestEntry } from '../utils/savedRequests';
@@ -144,6 +149,7 @@ export function submitRequest() {
         const endpoint = endpointSelector(state);
         const timeout = requestTimeoutSelector(state);
         const proxy = requestProxySelector(state);
+        const ignoreSSLErrors = ignoreSSLErrorsSelector(state);
         const isMultiplexerEnabled = multiplexerEnabledSelector(state);
         const modifiedServiceName = modifiedServiceNameSelector(state);
 
@@ -172,7 +178,8 @@ export function submitRequest() {
                 endpoint,
                 requestMessage,
                 timeout,
-                proxy
+                proxy,
+                ignoreSSLErrors,
             });
             dispatch(editorAC.submitRequestSuccess(result));
             dispatch(saveEndpointHistory(endpoint, method.serviceName));

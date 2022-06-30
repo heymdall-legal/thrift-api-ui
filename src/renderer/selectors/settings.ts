@@ -18,6 +18,11 @@ export const proxyEnabledSelector = createSelector(
     state => state.isProxyEnabled
 );
 
+export const ignoreSSLErrorsSelector = createSelector(
+    settingsSelector,
+    state => state.ignoreSSLErrors,
+)
+
 export const requestProxySelector = createSelector(
     proxyUrlSelector,
     proxyEnabledSelector,

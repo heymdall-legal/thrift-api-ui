@@ -19,6 +19,7 @@ export type SettingsState = {
     isOpened: boolean;
     isProxyEnabled: boolean;
     requestTimeout: number;
+    ignoreSSLErrors: boolean;
     version?: string;
 };
 
@@ -26,6 +27,7 @@ export const defaultState: SettingsState = {
     isMultiplexerEnabled: false,
     isOpened: false,
     isProxyEnabled: false,
+    ignoreSSLErrors: false,
     requestTimeout: 3000,
     endpointsHistory: []
 };

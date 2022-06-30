@@ -5,6 +5,7 @@ import { RootState } from '../reducers';
 import { bindActionCreators, Dispatch } from 'redux';
 import { Settings } from '../components/Settings';
 import {
+    ignoreSSLErrorsSelector,
     isSettingsOpenedSelector,
     multiplexerEnabledSelector,
     proxyEnabledSelector,
@@ -23,6 +24,7 @@ function mapStateToProps(state: RootState) {
         requestTimeout: requestTimeoutSelector(state),
         thriftSrcPath: thriftSrcPathSelector(state),
         isOpened: isSettingsOpenedSelector(state),
+        ignoreSSLErrors: ignoreSSLErrorsSelector(state),
         isThriftParsingInProgress: isThriftParsingInProgressSelector(state),
         version: versionSelector(state)
     };
@@ -33,6 +35,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
         onProxyUrlChange: settingsActions.setProxyUrl,
         onIsMultiplexerEnabledChange: settingsActions.setMultiplexerEnabled,
         onIsProxyEnabledChange: settingsActions.setProxyEnabled,
+        onIgnoreSSLErrorChange: settingsActions.setIgnoreSSLErrors,
         onRequestTimeoutChange: settingsActions.setRequestTimeout,
         onChangePathClick: settingsActions.showSelectThriftPathDialog,
         onClose: settingsActions.hideSettings
