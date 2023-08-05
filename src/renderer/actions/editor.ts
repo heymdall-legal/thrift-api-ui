@@ -7,6 +7,7 @@ import {
     endpointSelector,
     modifiedServiceNameSelector,
     requestSelector,
+    headerSelector,
     selectedMethodSelector
 } from '../selectors/editor';
 import {
@@ -30,6 +31,7 @@ export const SELECT_TAB = '@editor/selectTab';
 export const SELECT_SERVICE_AND_METHOD = '@editor/selectServiceAndMethod';
 export const SET_ENDPOINT = '@editor/setEndpoint';
 export const SET_REQUEST = '@editor/setRequest';
+export const SET_HEADER = '@editor/setHeader';
 export const SET_SERVICE_NAME = '@editor/setServiceName';
 export const SUBMIT_REQUEST = '@editor/submitRequest';
 export const SUBMIT_REQUEST_ERROR = '@editor/submitRequestError';
@@ -70,6 +72,12 @@ const editorAC = {
     setRequest(value: string) {
         return {
             type: SET_REQUEST,
+            value
+        } as const;
+    },
+    setHeader(value: string) {
+        return {
+            type: SET_HEADER,
             value
         } as const;
     },
@@ -139,6 +147,7 @@ export function selectServiceAndMethod(serviceName: string, methodName: string) 
 }
 export const setEndpoint = editorAC.setEndpoint;
 export const setRequest = editorAC.setRequest;
+export const setHeader = editorAC.setHeader;
 export const setServiceName = editorAC.setServiceName;
 
 export function submitRequest() {
@@ -146,6 +155,7 @@ export function submitRequest() {
         const state = getState();
         const method = selectedMethodSelector(state);
         const requestMessage = requestSelector(state);
+        const header = headerSelector(state);
         const endpoint = endpointSelector(state);
         const timeout = requestTimeoutSelector(state);
         const proxy = requestProxySelector(state);
@@ -180,6 +190,7 @@ export function submitRequest() {
                 timeout,
                 proxy,
                 ignoreSSLErrors,
+                header,
             });
             dispatch(editorAC.submitRequestSuccess(result));
             dispatch(saveEndpointHistory(endpoint, method.serviceName));

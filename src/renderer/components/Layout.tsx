@@ -4,6 +4,7 @@ import { MethodsFilterContainer } from '../containers/MethodsFilterContainer';
 import { TabsContainer } from '../containers/TabsContainer';
 import { EndpointContainer } from '../containers/EndpointContainer';
 import { MultiplexerContainer } from '../containers/MultiplexerContainer';
+import { HeaderEditorContainer } from '../containers/HeaderEditorContainer';
 import { RequestEditorContainer } from '../containers/RequestEditorContainer';
 import { ResponseViewerContainer } from '../containers/ResponseContainer';
 
@@ -15,10 +16,11 @@ const StyledLayout = styled.div`
         "tabs tabs"
         "endpoint endpoint"
         "multiplexer multiplexer"
+        "browser header"
         "browser request"
         "browser response";
     grid-template-columns: 280px minmax(0, 1fr);
-    grid-template-rows: auto auto auto 1fr 1fr;
+    grid-template-rows: auto auto auto 150px 1fr 1fr;
 `;
 
 const StyledBrowser = styled(MethodsFilterContainer)`
@@ -36,6 +38,12 @@ const StyledTabs = styled(TabsContainer)`
 
 const StyledRequestEditor = styled(RequestEditorContainer)`
     grid-area: request;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+`;
+
+const StyledHeaderEditor = styled(HeaderEditorContainer)`
+    grid-area: header;
     border-bottom: 1px solid #eee;
     padding: 16px 0;
 `;
@@ -60,6 +68,7 @@ export const Layout = () => (
         <StyledLayout>
             <StyledBrowser />
             <StyledTabs />
+            <StyledHeaderEditor />
             <StyledRequestEditor />
             <StyledEndpoint />
             <StyledMultiplexer />

@@ -1,7 +1,7 @@
 import uuid from 'uuid/v4';
 import { ActionsUnion, AppThunkAction } from '../utils/actionsUnion';
 import { SavedRequestEntry } from '../utils/savedRequests';
-import { endpointSelector, requestSelector, selectedMethodSelector } from '../selectors/editor';
+import { endpointSelector, requestSelector, headerSelector, selectedMethodSelector } from '../selectors/editor';
 import { savedEntriesSelector } from '../selectors/savedRequests';
 
 export const SAVE_REQUEST = '@savedRequests/save';
@@ -34,6 +34,7 @@ export function saveRequest(name: string): SavedRequestsThunkAction {
         const state = getState();
         const methodName = selectedMethodSelector(state);
         const request = requestSelector(state);
+        const header = headerSelector(state);
         const endpoint = endpointSelector(state);
 
         if (!methodName) {
@@ -48,6 +49,7 @@ export function saveRequest(name: string): SavedRequestsThunkAction {
             serviceName: methodName.serviceName,
             methodName: methodName.methodName,
             request,
+            header,
             endpoint,
             timestamp: Date.now()
         }));

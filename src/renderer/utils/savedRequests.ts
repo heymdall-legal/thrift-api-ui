@@ -4,6 +4,7 @@ export type SavedRequestEntry = {
     serviceName: string;
     methodName: string;
     request: string;
+    header: string;
     endpoint: string;
     timestamp: number;
 }
