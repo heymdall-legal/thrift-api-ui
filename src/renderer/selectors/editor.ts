@@ -39,6 +39,10 @@ export const requestSelector = createSelector(
     activeTabSelector,
     tab => tab.request
 );
+export const headerSelector = createSelector(
+    activeTabSelector,
+    tab => tab.header
+);
 export const responseSelector = createSelector(
     activeTabSelector,
     tab => tab.response || ''

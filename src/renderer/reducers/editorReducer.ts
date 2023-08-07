@@ -11,7 +11,7 @@ import {
     SUBMIT_REQUEST,
     SUBMIT_REQUEST_ERROR,
     SUBMIT_REQUEST_SUCCESS,
-    SET_THRIFT_SOURCE_PATH_SUCCESS, LOAD_SAVED_REQUEST
+    SET_THRIFT_SOURCE_PATH_SUCCESS, LOAD_SAVED_REQUEST, SET_HEADER
 } from '../actions';
 
 export type SelectedMethod = {
@@ -24,6 +24,7 @@ export type SingleTabState = {
     selectedMethod?: SelectedMethod;
     endpoint: string;
     request: string;
+    header: string;
     requestLoadingState: LoadingState;
     response?: string;
 };
@@ -37,9 +38,16 @@ export type EditorReducerState = {
     tabKeyCounter: number;
 };
 
+const value = {
+    headers: {
+        'Content-Type': 'application/x-thrift',
+    }
+}
+
 const DEFAULT_TAB_STATE: SingleTabState = {
     endpoint: '',
     request: '',
+    header: JSON.stringify(value, null, 4),
     requestLoadingState: LoadingState.Unknown
 };
 
@@ -138,6 +146,17 @@ export function editorReducer(state: EditorReducerState = initialState, action: 
                     }
                 }
             };
+        case SET_HEADER:
+            return {
+                ...state,
+                tabs: {
+                    ...state.tabs,
+                    [state.activeTabId]: {
+                        ...state.tabs[state.activeTabId],
+                        header: action.value
+                    }
+                }
+            };
         case SET_SERVICE_NAME:
             return {
                 ...state,
@@ -206,6 +225,7 @@ export function editorReducer(state: EditorReducerState = initialState, action: 
                         ...DEFAULT_TAB_STATE,
                         endpoint: action.entry.endpoint,
                         request: action.entry.request,
+                        header: action.entry.header,
                         selectedMethod: {
                             serviceName: action.entry.serviceName,
                             methodName: action.entry.methodName,

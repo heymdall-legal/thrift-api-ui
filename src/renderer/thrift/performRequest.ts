@@ -7,6 +7,7 @@ interface PerformRequestParameters {
     messageName: string;
     endpoint: string;
     requestMessage: string;
+    header: string;
     timeout: number;
     proxy?: string;
     ignoreSSLErrors: boolean;
@@ -15,9 +16,10 @@ interface PerformRequestParameters {
 const stringify = (data: any) => JSON.stringify(data, jsonNormalizerFilter, 4);
 
 export async function performRequest(
-    { method, messageName, endpoint, requestMessage, timeout, proxy, ignoreSSLErrors }: PerformRequestParameters
+    { method, messageName, endpoint, requestMessage, timeout, proxy, ignoreSSLErrors, header }: PerformRequestParameters
 ) {
     const params = JSON.parse(requestMessage);
+    const { headers } = JSON.parse(header);
     const message = new method.ArgumentsMessage({
         id: 0,
         body: new method.Arguments(params),
@@ -36,6 +38,7 @@ export async function performRequest(
         body: buffer,
         encoding: null,
         headers: {
+            ...headers,
             'Content-Type': 'application/x-thrift',
         },
         rejectUnauthorized: !ignoreSSLErrors,
